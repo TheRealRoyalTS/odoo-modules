@@ -1,6 +1,6 @@
 {
     "name": "Product Creation Prevention",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "summary": """Using this module we can prevent to create new products by
     users except admin user""",
     "depends": ["account", "stock", "sale_management", "mrp", "purchase"],

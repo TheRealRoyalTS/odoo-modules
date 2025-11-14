@@ -1,6 +1,6 @@
 {
     "name": "Product Lot/Serial Validation",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Stock",
     "author": "initOS GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",

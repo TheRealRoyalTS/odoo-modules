@@ -1,0 +1,75 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/postgres
+{
+	"name": "Python 3 & PostgreSQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "odoo",
+	"workspaceFolder": "/workspace",
+	// Features to add to the dev container. More info: https://containers.dev/features
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers-extra/features/copier:7": {},
+		"ghcr.io/devcontainers-extra/features/pre-commit:2": {},
+		"ghcr.io/devcontainers-extra/features/flake8:2":{},
+		"ghcr.io/devcontainers-extra/features/black:2":{},
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "make setup && pre-commit install",
+
+	// Use the 'updateContentCommand' to update content in a container after it is created.
+	"updateContentCommand": "make install",
+
+	"containerEnv": {"PYTHONPATH": "/vendored/odoo"},
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vivaxy.vscode-conventional-commits",
+				"ms-vscode-remote.remote-containers",
+				"ms-python.python",
+				"ms-python.flake8",
+				"dbaeumer.vscode-eslint",
+				"ms-vscode.makefile-tools",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"DotJoshJohnson.xml",
+				"github.vscode-github-actions",
+				"ms-vsliveshare.vsliveshare"
+			]
+		},
+		"codespaces": {
+            "repositories": {
+                "42nerds/copier_module_repo": {
+                    "permissions": {
+                        "contents": "read"
+                    }
+                },
+                "42nerds/copier_odoo_module": {
+                    "permissions": {
+                        "contents": "read"
+                    }
+                }
+            }
+        }
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		5432,
+		8069
+	],
+	"portsAttributes": {
+		"5432": {
+			"label": "PostgreSQL",
+			"onAutoForward": "silent"
+		},
+		"8069": {
+			"label": "Odoo",
+			"onAutoForward": "openBrowserOnce",
+			"protocol": "http"
+		}
+	}
+}

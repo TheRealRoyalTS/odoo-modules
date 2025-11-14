@@ -1,6 +1,6 @@
 {
     "name": "Set Default Email From Address",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Productivity",
     "summary": """
         This module allows to configure "Email From" value for mail sending from

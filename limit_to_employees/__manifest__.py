@@ -10,7 +10,7 @@ When users do the following actions in odoo, it only shows internal users contac
     "author": "Nitrokey GmbH",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
-    "version": "15.0.1.1.0",
+    "version": "18.0.1.0.0",
     # any module necessary for this one to work correctly
     "depends": ["account"],
     # always loaded

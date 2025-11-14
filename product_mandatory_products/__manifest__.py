@@ -1,6 +1,6 @@
 {
     "name": "Product Mandatory Products",
-    "version": "15.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "Product",
     "summary": "Show Mandatory product selection popup while Add to Cart.",
     "license": "AGPL-3",

@@ -1,0 +1,7 @@
+{
+    "extensions.ignoreRecommendations": true,
+    "python.analysis.extraPaths": ["/vendored/odoo"],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": []
+}

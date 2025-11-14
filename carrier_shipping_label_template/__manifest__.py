@@ -1,7 +1,7 @@
 {
     "name": "Carrier shipping label template",
     "summary": "Print shipping label from print menu",
-    "version": "15.0.3.1.5",
+    "version": "18.0.1.0.0",
     "data": [
         "data/report_shipping_label.xml",
     ],

@@ -1,0 +1,76 @@
+name: Test Unit Tests
+
+on: [push]
+
+env:
+    POSTGRES_DB: odoo
+    POSTGRES_USER: odoo
+    POSTGRES_PASSWORD: odoo
+    POSTGRES_HOST_AUTH_METHOD: trust
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+        # Label used to access the service container
+        postgres:
+          # Docker Hub image
+          image: postgres
+          env:
+            POSTGRES_DB: odoo
+            POSTGRES_USER: odoo
+            POSTGRES_PASSWORD: odoo
+            POSTGRES_HOST_AUTH_METHOD: trust
+          # Provide the password for postgres
+          # Set health checks to wait until postgres has started
+          options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+    container:
+        image: odoo:18.0
+        options: --user root
+    env:
+      PIP_BREAK_SYSTEM_PACKAGES: 1
+    steps:
+    - name: Install git
+      run: apt-get update && apt-get install git -y
+    - name: Checkout code
+      uses: actions/checkout@v5
+    - name: Checkout Hitchhiker
+      uses: actions/checkout@v5
+      with:
+        repository: "42nerds/hitchhiker"
+        path: "vendored/hitchhiker"
+    - name: move vendored directory
+      run: mv ./vendored ../
+    - name: Install hitchhiker
+      run: /usr/bin/pip3 install "../vendored/hitchhiker"
+    - name: Install test dependencies
+      run: /usr/bin/pip3 install coverage
+    - name: Install dev_requirements.txt
+      run: /usr/bin/pip3 install -r dev_requirements.txt || true
+    - name: Setup Odoo & run tests
+      run: >-
+        coverage run --source=. /usr/bin/odoo -r $POSTGRES_USER --db_password=$POSTGRES_PASSWORD --database=$POSTGRES_DB --db_host=postgres
+        -c odoo.conf
+        --save
+        --stop-after-init
+        --addons-path=$(/usr/bin/python3 -m hitchhiker modules generate_addons_path),${GITHUB_WORKSPACE}/../vendored/enterprise
+        -i base,$(find ./ -type f -name "__manifest__.py" -not -path './vendored/*' -exec dirname {} \; | xargs -I {} basename {} | tr '\n' ',' | sed 's/,$//g')
+        --test-tags=$(find ./ -type f -name "__manifest__.py" -not -path './vendored/*' -exec dirname {} \; | xargs -I {} basename {} | sed 's/^/\//' | tr '\n' ',' | sed 's/,$//g')
+    - name: Report coverage
+      run: |
+        coverage xml
+        echo "# Coverage" >> $GITHUB_STEP_SUMMARY
+        coverage report -m --format=markdown >> $GITHUB_STEP_SUMMARY
+        coverage report -m
+
+    - name: Codacy Coverage Reporter
+      uses: codacy/codacy-coverage-reporter-action@v1.1.0
+      with:
+        api-token: ${{ secrets.CODACY_API_TOKEN }}
+        coverage-reports: coverage.xml
+        # prefix-path: ${{ github.workspace }}

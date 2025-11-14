@@ -1,0 +1,19 @@
+####################################################################
+#   ____                      _              _ _ _     _   _   _
+#  |  _ \  ___    _ __   ___ | |_    ___  __| (_) |_  | | | | | |
+#  | | | |/ _ \  | '_ \ / _ \| __|  / _ \/ _` | | __| | | | | | |
+#  | |_| | (_) | | | | | (_) | |_  |  __/ (_| | | |_  |_| |_| |_|
+#  |____/ \___/  |_| |_|\___/ \__|  \___|\__,_|_|\__| (_) (_) (_)
+#
+#  This file is managed by Copier
+#  Manual changes will be lost
+####################################################################
+
+_commit: v1.35.0
+_src_path: gh:42nerds/copier_module_repo
+customer_repo: true
+maintenance_contract: false
+odoo_ee: false
+odoo_version: '18.0'
+public_port: true
+setup_mail: false

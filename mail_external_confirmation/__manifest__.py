@@ -1,6 +1,6 @@
 {
     "name": "Mail External Confirmation",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "summary": """
 This module will show confirmation dialog while sending message
 from chatter when any one follower of the record is not internal user.

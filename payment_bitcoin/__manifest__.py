@@ -2,7 +2,7 @@
     "name": "Bitcoin Payment Acquirer",
     "category": "Hidden",
     "summary": "Payment Acquirer: Bitcoin Transfer Implementation",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Nitrokey GmbH, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "LGPL-3",

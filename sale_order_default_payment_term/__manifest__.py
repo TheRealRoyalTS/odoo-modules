@@ -1,6 +1,6 @@
 {
     "name": "Sale Order Default Payment Term",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "summary": "Set the first payment term as default when creating a new sales order",
     "author": "Nitrokey GmbH",
